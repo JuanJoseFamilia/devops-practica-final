@@ -2,25 +2,23 @@ name: CI Prueba Unitaria
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout del código
-      uses: actions/checkout@v3
+      - name: Clonar repositorio
+        uses: actions/checkout@v2
 
-    - name: Instalar Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Usar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-    - name: Instalar dependencias
-      run: npm install
+      - name: Instalar dependencias
+        run: npm install
 
-    - name: Ejecutar pruebas
-      run: npx jest
+      - name: Ejecutar pruebas
+        run: npm test
